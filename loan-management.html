@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Page Loader -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoanCart - Smart Loan Management</title>
+    <link rel="icon" href="img/loan.png" type="image/png">
+  </head>
+  <body>
+    <div id="pageLoader" class="page-loader">
+      <div class="spinner"></div>
+    </div>
+    <header>
+      <nav class="container">
+        <div class="logo">💰 LoanCart</div>
+        <ul class="nav-links">
+          <li>
+            <a onclick="showPage('home')">Home</a>
+          </li>
+          <li>
+            <a onclick="showPage('apply')">Apply</a>
+          </li>
+          <li>
+            <a onclick="showPage('calculator')">Calculator</a>
+          </li>
+          <li>
+            <a href="#" onclick="protectedPage('dashboard')">Dashboard</a>
+          </li>
+          <li>
+            <a href="#" onclick="protectedPage('manage')">Manage</a>
+          </li>
+          <li>
+            <a href="#" onclick="protectedPage('profile')">Profile</a>
+          </li>
+          <li>
+            <a href="#" onclick="showPage('aboutus')">About Us</a>
+          </li>
+          <li id="navLogin">
+            <a onclick="showPage('login')">Login</a>
+          </li>
+          <li id="navSignup">
+            <a onclick="showPage('signup')">Sign Up</a>
+          </li>
+          <li id="navLogout" style="display: none;">
+            <a href="#" onclick="logoutUser()">Logout</a>
+          </li>
+        </ul>
+        <div class="mobile-menu">☰</div>
+      </nav>
+    </header>
+    <main>
+      <!-- Home Page -->
+      <div id="home" class="page active">
+        <section class="hero">
+          <div class="container">
+            <h1>Smart Loan Management Made Simple</h1>
+            <p>Get loans faster, manage them better, and achieve your financial goals with confidence.</p>
+            <button class="btn" onclick="showPage('apply')">Apply for Loan</button>
+          </div>
+        </section>
+        <!-- Features -->
+        <section class="container">
+          <div class="grid">
+            <div class="card">
+              <h3>🚀 Quick Approval</h3>
+              <p>Get approved in as little as 24 hours with our streamlined process and advanced risk assessment.</p>
+            </div>
+            <div class="card">
+              <h3>💡 Smart Calculator</h3>
+              <p>Calculate your EMIs, interest rates, and total payable amount with our intelligent loan calculator.</p>
+            </div>
+            <div class="card">
+              <h3>📊 Easy Management</h3>
+              <p>Track all your loans, payments, and financial progress from one comprehensive dashboard.</p>
+            </div>
+          </div>
+        </section>
+        <!-- Why Choose Us -->
+        <section class="container">
+          <div class="grid">
+            <div class="card">
+              <h3>🔒 Secure & Private</h3>
+              <p>We follow top-notch encryption and data protection protocols to keep your information safe.</p>
+            </div>
+            <div class="card">
+              <h3>🏦 Trusted by 10K+ Users</h3>
+              <p>Thousands of users trust LoanCart to simplify and manage their loans effectively.</p>
+            </div>
+            <div class="card">
+              <h3>📞 24/7 Support</h3>
+              <p>Have questions? Our support team is here for you anytime via chat, email, or phone.</p>
+            </div>
+          </div>
+        </section>
+        <!-- Loan Process -->
+        <section class="container">
+          <div class="card">
+            <h2 style="text-align: center;">How It Works</h2>
+            <div class="grid">
+              <div class="loan-item">
+                <h4>1️⃣ Apply Online</h4>
+                <p>Fill in a simple application form and submit your loan request.</p>
+              </div>
+              <div class="loan-item">
+                <h4>2️⃣ Get Verified</h4>
+                <p>Our team verifies your details with minimal documentation.</p>
+              </div>
+              <div class="loan-item">
+                <h4>3️⃣ Get Funded</h4>
+                <p>Once approved, funds are transferred directly to your account.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Testimonials -->
+        <section class="container">
+          <div class="card">
+            <h2 style="text-align: center;">What Our Customers Say</h2>
+            <div class="grid">
+              <div class="loan-item">
+                <p>"LoanCart made getting my first loan so easy. The process was fast and transparent!"</p>
+                <strong>- Aditi Sharma</strong>
+              </div>
+              <div class="loan-item">
+                <p>"Love the dashboard and calculator. I can now plan my repayments without stress."</p>
+                <strong>- Rahul Verma</strong>
+              </div>
+              <div class="loan-item">
+                <p>"Amazing support team. Helped me choose the right plan for my business loan."</p>
+                <strong>- Sneha Patel</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Trust Logos -->
+        <section class="container">
+          <div class="card" style="text-align: center;">
+            <h3>You're in Good Company</h3>
+            <p>Backed by trusted institutions and used by thousands globally.</p>
+            <img src="img/trusted-brands.png" alt="Trusted brands" style="max-width: 100%; margin-top: 1rem;" />
+          </div>
+        </section>
+      </div>
+      <!-- Apply for Loan Page -->
+      <div id="apply" class="page">
+        <div class="container">
+          <div class="card">
+            <h2>Apply for a Loan</h2>
+            <form id="loanForm">
+              <div class="grid">
+                <div>
+                  <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="income">Monthly Income (₹)</label>
+                    <input type="number" id="income" min="1000" required>
+                  </div>
+                    <small class="info-text" id="incomeInfo" style="display: none;">Above details are Auto-filled from your registered profile and not editable.</small>
+                </div>
+                <div>
+                  <div class="form-group">
+                    <label for="loanType">Loan Type</label>
+                    <select id="loanType" required>
+                      <option value="">Select Loan Type</option>
+                      <option value="personal">Personal Loan</option>
+                      <option value="home">Home Loan</option>
+                      <option value="car">Car Loan</option>
+                      <option value="business">Business Loan</option>
+                      <option value="education">Education Loan</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="loanAmount">Loan Amount (₹)</label>
+                    <input type="number" id="loanAmount" min="1000" max="1000000" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="tenure">Loan Tenure (Years)</label>
+                    <select id="tenure" required>
+                      <option value="">Select Tenure</option>
+                      <option value="1">1 Year</option>
+                      <option value="2">2 Years</option>
+                      <option value="3">3 Years</option>
+                      <option value="5">5 Years</option>
+                      <option value="10">10 Years</option>
+                      <option value="15">15 Years</option>
+                      <option value="20">20 Years</option>
+                      <option value="30">30 Years</option>
+                    </select>
+                  </div>
+                   <div class="form-group">
+                        <label for="purpose">Purpose of Loan</label>
+                        <textarea id="purpose" rows="3" placeholder="Briefly describe the purpose of this loan"></textarea>
+                    </div>
+                </div>
+              </div>
+              <button type="submit" class="btn">Submit Application</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Loan Calculator Page -->
+      <div id="calculator" class="page">
+        <div class="container">
+          <div class="card">
+            <h2>Loan Calculator</h2>
+            <div class="grid">
+              <div>
+                <div class="form-group">
+                  <label for="calcAmount">Loan Amount (₹)</label>
+                  <input type="number" id="calcAmount" value="50000" min="1000">
+                </div>
+                <div class="form-group">
+                  <label for="calcRate">Interest Rate (% per year)</label>
+                  <input type="number" id="calcRate" value="8.5" min="1" max="30" step="0.1">
+                </div>
+                <div class="form-group">
+                  <label for="calcTenure">Loan Tenure (Years)</label>
+                  <input type="number" id="calcTenure" value="5" min="1" max="30">
+                </div>
+                <button class="btn" onclick="calculateLoan()">Calculate</button>
+              </div>
+              <div id="calculatorResult" class="calculator-result">
+                <h3>Loan Details</h3>
+                <p>
+                  <strong>Monthly EMI:</strong>
+                  <span id="emi">₹0</span>
+                </p>
+                <p>
+                  <strong>Total Interest:</strong>
+                  <span id="totalInterest">₹0</span>
+                </p>
+                <p>
+                  <strong>Total Amount:</strong>
+                  <span id="totalAmount">₹0</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Dashboard Page -->
+      <div id="dashboard" class="page">
+        <div class="container">
+          <h2 style="color: white; margin-bottom: 2rem;">Loan Dashboard</h2>
+          <div class="dashboard-stats">
+            <div class="stat-card">
+              <h3 id="totalLoans">3</h3>
+              <p>Total Loans</p>
+            </div>
+            <div class="stat-card">
+              <h3 id="activeLoans">2</h3>
+              <p>Active Loans</p>
+            </div>
+            <div class="stat-card">
+              <h3 id="totalDebt">₹125,000</h3>
+              <p>Total Debt</p>
+            </div>
+            <div class="stat-card">
+              <h3 id="monthlyPayment">₹2,350</h3>
+              <p>Monthly Payment</p>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Recent Loans</h3>
+            <div class="grid" id="recentLoans"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Manage Loans Page -->
+      <div id="manage" class="page">
+        <div class="container">
+          <div class="card">
+            <h2>Manage Your Loans</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Loan ID</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>EMI</th>
+                  <th>Status</th>
+                  <th>Next Payment</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="loanTable">
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <h3>Payment History</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Loan ID</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nov 15, 2024</td>
+                  <td>LN001</td>
+                  <td>₹1,800</td>
+                  <td>
+                    <span class="status approved">Paid</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Nov 20, 2024</td>
+                  <td>LN002</td>
+                  <td>₹550</td>
+                  <td>
+                    <span class="status approved">Paid</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Oct 15, 2024</td>
+                  <td>LN001</td>
+                  <td>₹1,800</td>
+                  <td>
+                    <span class="status approved">Paid</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Profile Page -->
+      <div id="profile" class="page">
+        <div class="container">
+          <div class="card">
+            <h2>User Profile</h2>
+            <div class="grid">
+              <div>
+                <div class="form-group">
+                  <label for="profileName">Full Name</label>
+                  <input type="text" id="profileName" value="John Doe">
+                </div>
+                <div class="form-group">
+                  <label for="profileEmail">Email</label>
+                  <input type="email" id="profileEmail" value="john.doe@email.com">
+                </div>
+                <div class="form-group">
+                  <label for="profilePhone">Phone</label>
+                  <input type="tel" id="profilePhone" value="+1 234 567 8900">
+                </div>
+              </div>
+              <div>
+                <div class="form-group">
+                  <label for="profileIncome">Monthly Income</label>
+                  <input type="number" id="profileIncome" value="8500">
+                </div>
+                <div class="form-group">
+                  <label for="profileAddress">Address</label>
+                  <textarea id="profileAddress" rows="3">123 Main Street, City, State 12345</textarea>
+                </div>
+                <div class="form-group">
+                  <label for="creditScore">Credit Score</label>
+                  <input type="number" id="creditScore" value="750" readonly>
+                </div>
+              </div>
+            </div>
+            <button class="btn" onclick="updateProfile()">Update Profile</button>
+          </div>
+          <!-- <div class="card">
+            <h3>Account Settings</h3>
+            <div class="form-group">
+              <label>
+                <input type="checkbox" checked> Email notifications for payment reminders </label>
+            </div>
+            <div class="form-group">
+              <label>
+                <input type="checkbox" checked> SMS alerts for due dates </label>
+            </div>
+            <div class="form-group">
+              <label>
+                <input type="checkbox"> Marketing communications </label>
+            </div>
+            <button class="btn" onclick="saveSettings()">Save Settings</button>
+          </div> -->
+        </div>
+      </div>
+      <div id="aboutus" class="page">
+        <div class="container">
+          <div class="card about-card">
+            <h2 class="center">👨‍💻 About the Developer</h2>
+            <div class="about-grid">
+              <div class="profile-pic">
+                <img src="img/sha.jpg" alt="Shashwat Shukla" />
+              </div>
+              <div class="profile-details">
+                <h3>Shashwat Shukla</h3>
+                <p class="subtitle">BCA Student | Full Stack Enthusiast | Creator of LoanCart</p>
+                <p>
+                  👋 Hi, I'm Shashwat — a passionate tech learner and developer who thrives on solving real-world problems through smart, user-centric digital solutions. As a BCA student, I've always believed in learning by doing.
+                </p>
+                <p>
+                  💡 <strong>LoanCart</strong> is a personal initiative born out of the idea to make loan management simple, transparent, and stress-free. It’s more than a project — it’s a reflection of my journey in tech, product design, and customer-first thinking.
+                </p>
+                <p>
+                  🚀 Whether it’s applying for a loan, calculating EMIs, or tracking your credit and repayments — LoanCart brings it all together in one seamless experience.
+                </p>
+                <p>
+                  🤝 Thanks for stopping by. Your feedback and support help me grow, learn, and build better every day!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Signup Page -->
+      <div id="signup" class="page">
+        <div class="container">
+            <div class="card">
+                <h2>Create Account</h2>
+                <br>
+                <form id="signupForm">
+                    <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="signupName" required>
+                    </div>
+                    <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="signupEmail" required>
+                    </div>
+                    <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="signupPhone" required>
+                    </div>
+                    <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="signupPassword" required>
+                    </div>
+
+                    <!-- ✅ New fields start here -->
+                    <div class="form-group">
+                    <label>Monthly Income (₹)</label>
+                    <input type="number" id="signupIncome" required>
+                    </div>
+                    <div class="form-group">
+                    <label>Address</label>
+                    <textarea id="signupAddress" rows="2" required></textarea>
+                    </div>
+                    <div class="form-group">
+                    <label>Credit Score</label>
+                    <input type="number" id="signupCreditScore" min="300" max="900" required>
+                    </div>
+                    <!-- ✅ New fields end here -->
+
+                    <button class="btn" type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+        </div>
+
+      <!-- Login Page -->
+      <div id="login" class="page">
+        <div class="container">
+          <div class="card">
+            <h2>Login</h2>
+            <form id="loginForm">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail" required>
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="loginPassword" required>
+              </div>
+              <button class="btn" type="submit">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="notification" class="notification"></div>
+    <footer style="text-align: center; padding: 1rem; background: #222; color: #fff; font-size: 0.9rem;">
+        Made with <span style="color: rgb(0, 225, 255); font-size: large;">&hearts;</span> by Shashwat
+    </footer>
+  </body>
+</html>
+<script src="js/app.js"></script>
+<link rel="stylesheet" href="css/app.css">
